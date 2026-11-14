@@ -50,3 +50,10 @@ digit codes). `decode_unpacked` requires the high nibble to be zero.
 - `decode_packed(data: bytes) -> int`
 - `encode_unpacked(n, digits=0) -> bytes`
 - `decode_unpacked(data: bytes) -> int`
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
